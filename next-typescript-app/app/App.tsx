@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-
+'use client'
 import React from 'react'
 
 const pizzaData = [
@@ -73,6 +73,9 @@ function Meni() {
     const pice = pizzaData
     const brojPica = pice.length
 
+    const određena = pice.filter(pizza => pizza.name === 'Pizza Spinaci')
+    console.log(određena);
+
     return (
         <div>
             {brojPica > 0 ? (
@@ -92,7 +95,9 @@ function Meni() {
             ) : (
                 <p>Nema pica trenutno</p>
             )}
+            <button type="reset" onClick={() => console.log(određena)}>Spinaci</button>
         </div>
+
     );
 }
 
