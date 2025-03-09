@@ -64,7 +64,7 @@ const App = () => {
     )
 
 }
-const style={'color':'red','backgroundColor':'yellow'}
+const style = { 'color': 'red', 'backgroundColor': 'yellow' }
 function Header() {
     return (
         <header className="header">
@@ -124,22 +124,22 @@ function Pizza({ pizzaName, pizzaPrice, pizzaDodaci, pizzaVeličina, pizzaProdat
 
     return (
         <li className={`pizza ${pizzaProdato ? "sold-out" : ""}`}>
-          <Image src="/pizzas/spinaci.jpg" alt="pica" width={500} height={500}/>
+            <Image src="/pizzas/focaccia.jpg" alt="pica" width={500} height={500} />
 
-          {/* <Image src="/my-image.png" alt="my-image" width={500} height={500} /> */}
-          <div>
-            <h3 className='text-gray-500'>{pizzaName}</h3>
-            <p>{pizzaDodaci}</p>
+            {/* <Image src="/my-image.png" alt="my-image" width={500} height={500} /> */}
+            <div>
+                <h3 className='text-gray-500'>{pizzaName}</h3>
+                <p>{pizzaDodaci}</p>
 
-            {pizzaProdato ? (
-                 <span className='text-red-500' >{pizzaName} nije na stanju</span>
-            //   <span>NIJE ZA PRUDŽBINU</span>
-            ) : (
-              <span>{pizzaPrice}</span>
-            )}
-          </div>
+                {pizzaProdato ? (
+                    <span className='text-red-500' >{pizzaName} nije na stanju</span>
+                    //   <span>NIJE ZA PRUDŽBINU</span>
+                ) : (
+                    <span>{pizzaPrice}</span>
+                )}
+            </div>
         </li>
-      );
+    );
 }
 function Footer() {
     const otvoreno = 7;
@@ -147,16 +147,16 @@ function Footer() {
     const vrijeme = new Date().getHours();
     return (
         <footer className="Footer">
-            <Order/>
-            <p >Objeklat je {vrijeme > 6 && vrijeme < 24 ? 'otvoren' : 'zatvoren'} </p>
+            <Order />
+            <p className='flex justify-center items-center' >Objeklat je {vrijeme > 6 && vrijeme < 24 ? 'otvoren' : 'zatvoren'} </p>
         </footer>
     );
 }
 
 function Order() {
     return (
-        <div>
-            <button className="btn">Naruči</button>
+        <div className='border-1 m-4 p-4 lex justify-center items-center'>
+            <button className='btn' type="button">Naruči</button>
         </div>
     );
 }
