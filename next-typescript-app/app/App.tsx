@@ -56,7 +56,7 @@ const pizzaData = [
 
 const App = () => {
     return (
-        <div>
+        <div className='container'>
             <Header />
             <Meni />
             <Footer />
@@ -155,7 +155,7 @@ function Footer() {
 
 function Order() {
     return (
-        <div className='border-1 m-4 p-4 lex justify-center items-center'>
+        <div className='order'>
             <button className='btn' type="button">Naruči</button>
         </div>
     );
