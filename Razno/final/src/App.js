@@ -1,6 +1,4 @@
-'use client'
 import { useState } from "react";
-import "./index.css";
 
 const messages = [
   "Learn React ⚛️",
@@ -89,9 +87,7 @@ function Steps() {
   );
 }
 
-import { ReactNode } from "react";
-
-function StepMessage({ step, children }: { step: number; children: ReactNode }) {
+function StepMessage({ step, children }) {
   return (
     <div className="message">
       <h3>Step {step}</h3>
@@ -100,7 +96,7 @@ function StepMessage({ step, children }: { step: number; children: ReactNode }) 
   );
 }
 
-function Button({ textColor, bgColor, onClick, children }: { textColor: string; bgColor: string; onClick: () => void; children: React.ReactNode }) {
+function Button({ textColor, bgColor, onClick, children }) {
   return (
     <button
       style={{ backgroundColor: bgColor, color: textColor }}

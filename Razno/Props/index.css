@@ -163,6 +163,9 @@ body {
 }
 
 .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: inherit;
   font-family: inherit;
   border: none;
