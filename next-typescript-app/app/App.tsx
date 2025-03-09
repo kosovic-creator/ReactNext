@@ -1,8 +1,13 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 'use client'
+import { imageOptimizer } from 'next/dist/server/image-optimizer';
+import { imageConfigDefault } from 'next/dist/shared/lib/image-config';
 import React from 'react'
+import "./index.css";
+import Image from 'next/image';
 
 const pizzaData = [
     {
@@ -57,12 +62,13 @@ const App = () => {
             <Footer />
         </div>
     )
-}
 
+}
+const style={'color':'red','backgroundColor':'yellow'}
 function Header() {
     return (
-        <header>
-            <p className=' border-solid text-4xl bg-amber-600 rounded-lg shadow-lg text-white'>Meni</p>
+        <header className="header">
+            <h1 style={style}>Meni</h1>
         </header>
 
     )
@@ -77,10 +83,10 @@ function Meni() {
     console.log(određena);
 
     return (
-        <div>
+        <main className="menu">
             {brojPica > 0 ? (
-                <div className='flex flex-col '>
-                    <ul className='bg-emerald-900 rounded-lg shadow-lg text-white'>
+                <div >
+                    <ul className="pizzas">
                         {pice.map((pizza, index) => (
                             <Pizza
                                 key={index}
@@ -88,6 +94,8 @@ function Meni() {
                                 pizzaPrice={pizza.price}
                                 pizzaDodaci={pizza.ingredients}
                                 pizzaVeličina="large"
+                                pizzaProdato={pizza.soldOut}
+                                pizzaSlika={pizza.photoName}
                             />
                         ))}
                     </ul>
@@ -95,8 +103,8 @@ function Meni() {
             ) : (
                 <p>Nema pica trenutno</p>
             )}
-            <button type="reset" onClick={() => console.log(određena)}>Spinaci</button>
-        </div>
+            {/* <button type="reset" onClick={() => console.log(određena)}>Spinaci</button> */}
+        </main>
 
     );
 }
@@ -107,29 +115,50 @@ interface PizzaProps {
     pizzaPrice: number;
     pizzaDodaci: string;
     pizzaVeličina?: string;
+    pizzaProdato: boolean;
+    pizzaSlika: string;
+
 }
 
-function Pizza({ pizzaName, pizzaPrice, pizzaDodaci, pizzaVeličina }: PizzaProps) {
+function Pizza({ pizzaName, pizzaPrice, pizzaDodaci, pizzaVeličina, pizzaProdato, pizzaSlika }: PizzaProps) {
 
     return (
-        <ul className='p-2.5 bg-emerald-600 rounded-lg shadow-lg text-white'>
-            <li>pica name :{pizzaName}</li>
-            <li>cijena: {pizzaPrice}</li>
-            <li>dodaci: {pizzaDodaci}</li>
-            <li>veličina: {pizzaVeličina}</li>
+        <li className={`pizza ${pizzaProdato ? "sold-out" : ""}`}>
+          <Image src="/pizzas/spinaci.jpg" alt="pica" width={500} height={500}/>
 
-        </ul>
+          {/* <Image src="/my-image.png" alt="my-image" width={500} height={500} /> */}
+          <div>
+            <h3 className='text-gray-500'>{pizzaName}</h3>
+            <p>{pizzaDodaci}</p>
 
-    )
+            {pizzaProdato ? (
+                 <span className='text-red-500' >{pizzaName} nije na stanju</span>
+            //   <span>NIJE ZA PRUDŽBINU</span>
+            ) : (
+              <span>{pizzaPrice}</span>
+            )}
+          </div>
+        </li>
+      );
 }
 function Footer() {
     const otvoreno = 7;
-    const zatvoreno = 22
-    const vrijeme = new Date().getHours()
+    const zatvoreno = 22;
+    const vrijeme = new Date().getHours();
     return (
-        <p className='m-0 border-solid border-2 text-xl bg-amber-800 rounded-lg shadow-lg text-white'>Objeklat je {vrijeme > 7 && vrijeme < 24 ? 'otvoren' : 'zatvoren'}</p>
-    )
+        <footer className="Footer">
+            <Order/>
+            <p >Objeklat je {vrijeme > 6 && vrijeme < 24 ? 'otvoren' : 'zatvoren'} </p>
+        </footer>
+    );
+}
 
+function Order() {
+    return (
+        <div>
+            <button className="btn">Naruči</button>
+        </div>
+    );
 }
 
 export default App
